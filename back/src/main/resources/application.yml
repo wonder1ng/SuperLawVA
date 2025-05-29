@@ -1,0 +1,79 @@
+spring:
+  profiles:
+    active: local  # 기본 프로필
+
+  # 공통 설정
+  jpa:
+    hibernate:
+      ddl-auto: update  # create → update로 변경 (운영 시 validate)
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        use_sql_comments: true
+    defer-datasource-initialization: true
+
+  # SQL 초기화 설정
+  sql:
+    init:
+      mode: never  # 운영에서는 never, 개발에서는 always
+
+# 카카오 로그인 설정
+kakao:
+  client-id: d5169e8b3457cc1295d2140ed61a3057
+  client-secret: sGP9vhD5egFqjx3YogukbQBTf3KLKzbX
+  redirect-uri: http://localhost:5173/oauth/kakao/callback
+
+# 네이버 로그인 설정
+naver:
+  client-id: orAsAb4EzjWjhfXYwkYf
+  client-secret: EnRBtf2cax
+  redirect-uri: http://localhost:5173/oauth/naver/callback
+
+# JWT 설정
+jwt:
+  secret: ${JWT_SECRET:JWT_SECRET_1234_JWT_SECRET_1234_JWT_SECRET_1234_JWT_SECRET_1234}
+  access-token-validity: 3600000 # 1시간
+  refresh-token-validity: 604800000 # 7일
+
+# Swagger 설정
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  packages-to-scan: com.springboot.controller
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+
+# 로깅 설정
+logging:
+  level:
+    com.springboot: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+---
+# 로컬 개발 환경 (MySQL)
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  datasource:
+    url: jdbc:mysql://localhost:3307/legal_ai_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME:legal_ai_user}
+    password: ${DB_PASSWORD:xodud2355}  # 비밀번호
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8080
