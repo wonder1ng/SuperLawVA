@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/email_service?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+# JWT 설정 - 토큰 생성/검증에 필요한 설정값들
+jwt:
+  secret: mySecretKey123456789012345678901234567890  # JWT 서명에 사용할 비밀키 (실제 운영시에는 더 복잡하게!)
+  //expiration: 86400000  # 토큰 만료시간 (밀리초, 24시간 = 24*60*60*1000)
+
+logging:
+  level:
+    org.hibernate.SQL: debug
