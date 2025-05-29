@@ -1,4 +1,4 @@
-package first.backtest.join;
+package first.backtest.join.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
