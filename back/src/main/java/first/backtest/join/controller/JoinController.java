@@ -1,37 +1,37 @@
 package first.backtest.join.controller;
 
 import first.backtest.join.UserCreateForm;
+import first.backtest.join.dto.UserJoinResponseDTO;
+import first.backtest.join.dto.VerifyRequestDTO;
 import first.backtest.join.service.JoinService;
 import first.backtest.join.service.MailService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import first.backtest.join.dto.UserJoinResponseDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("/api/user")
 public class JoinController {
 
     private final JoinService joinService;
     private final MailService mailService;
 
+    /**
+     * ID로 회원 정보 조회
+     */
     @GetMapping("/find-by-id")
     public ResponseEntity<UserJoinResponseDTO> getUser(@RequestParam Long id) {
-        UserJoinResponseDTO user = joinService.getUserById(id);
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(joinService.getUserById(id));
     }
 
+    /**
+     * 회원가입 + 인증메일 전송
+     */
     @PostMapping("/join")
     public ResponseEntity<?> join(@Valid @RequestBody UserCreateForm userCreateForm,
                                   BindingResult bindingResult) {
@@ -44,25 +44,35 @@ public class JoinController {
             return ResponseEntity.badRequest().body("비밀번호가 서로 일치하지 않습니다.");
         }
 
+        // 사용자 저장
         joinService.create(
                 userCreateForm.getUsername(),
                 userCreateForm.getEmail(),
                 userCreateForm.getPassword1()
         );
 
-        // 🟦 [추가] 인증번호 생성
+        // 인증번호 생성
         String code = UUID.randomUUID().toString().substring(0, 6).toUpperCase();
 
-        // 🟦 [추가] 인증메일 전송
+        // 인증메일 전송 + Redis 저장
         mailService.sendAuthMail(userCreateForm.getEmail(), code);
-
-        // 🟦 [추가] 인증번호 저장은 추후 Redis/DB 연동 시 구현
-        // TODO: 인증번호를 Redis 또는 DB에 저장하고, 유효시간 설정 추천
 
         return ResponseEntity.ok("회원가입 성공! 인증메일이 전송되었습니다.");
     }
-}
 
+    /**
+     * 이메일 인증번호 검증
+     */
+    @PostMapping("/verify")
+    public ResponseEntity<?> verifyCode(@RequestBody VerifyRequestDTO request) {
+        try {
+            mailService.verifyCode(request.getEmail(), request.getCode());
+            return ResponseEntity.ok("이메일 인증 성공!");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(403).body(e.getMessage());
+        }
+    }
+}
 
 
 

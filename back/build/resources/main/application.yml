@@ -5,6 +5,11 @@ spring:
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+
+    redis:
+      host: localhost
+      port: 6379
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -13,10 +18,18 @@ spring:
       hibernate:
         format_sql: true
 
-# JWT 설정 - 토큰 생성/검증에 필요한 설정값들
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ori8591y@gmail.com
+    password: lcootxacmgppwdwq  # 발급받은 앱 비밀번호 (띄어쓰기 없이!)
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
 jwt:
-  secret: mySecretKey123456789012345678901234567890  # JWT 서명에 사용할 비밀키 (실제 운영시에는 더 복잡하게!)
-  //expiration: 86400000  # 토큰 만료시간 (밀리초, 24시간 = 24*60*60*1000)
+  secret: mySecretKey123456789012345678901234567890
+  # expiration: 86400000  # 토큰 만료시간 (밀리초, 24시간)
 
 logging:
   level:

@@ -66,7 +66,8 @@ public class SecurityConfig {
                                 "/swagger-resources/**",
                                 "/webjars/**",
                                 "/api/user/join",    // 회원가입은 인증 없이 접근 가능
-                                "/api/user/login",   // 로그인은 인증 없이 접근 가능
+                                "/api/user/login",
+                                "/api/user/verify",// 로그인은 인증 없이 접근 가능
                                 "/error",
                                 "/csrf"
                         ).permitAll()

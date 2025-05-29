@@ -1,34 +1,39 @@
 package first.backtest.join.service;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import first.backtest.join.dto.UserJoinResponseDTO;
 import first.backtest.user.UserEntity;
 import first.backtest.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
 public class JoinService {
+
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder; // Bean으로 주입받아 사용
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public UserEntity create(String username, String email, String password) {
 
-        // 중복 사용자명 체크
+        // 사용자명 중복 체크
         if (userRepository.findByUsername(username).isPresent()) {
             throw new RuntimeException("이미 존재하는 사용자명입니다.");
+        }
+
+        // 이메일 중복 체크
+        if (userRepository.existsByEmail(email)) {
+            throw new RuntimeException("이미 등록된 이메일입니다.");
         }
 
         UserEntity user = new UserEntity();
         user.setUsername(username);
         user.setEmail(email);
-        user.setPassword(passwordEncoder.encode(password)); // Bean으로 주입받은 인코더 사용
-        this.userRepository.save(user);
-        return user;
+        user.setPassword(passwordEncoder.encode(password)); // 비밀번호 암호화
+
+        return userRepository.save(user);
     }
 
     public UserJoinResponseDTO getUserById(Long id) {
@@ -37,3 +42,4 @@ public class JoinService {
         return UserJoinResponseDTO.fromEntity(user);
     }
 }
+
