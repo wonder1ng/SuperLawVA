@@ -41,5 +41,10 @@ public class JoinService {
                 .orElseThrow(() -> new RuntimeException("해당 ID의 사용자를 찾을 수 없습니다."));
         return UserJoinResponseDTO.fromEntity(user);
     }
+
+    // 🔵 회원 탈퇴 메서드 추가
+    public void deleteUser(Long userId) {
+        userRepository.deleteById(userId); // 완전 삭제 방식
+    }
 }
 

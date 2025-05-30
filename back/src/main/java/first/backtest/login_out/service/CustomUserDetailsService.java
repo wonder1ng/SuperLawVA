@@ -23,10 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         UserEntity user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다: " + username)); //디버깅용이나 로깅용 메시지
 
-        return User.builder()
-                .username(user.getUsername())
-                .password(user.getPassword())
-                .authorities(new ArrayList<>()) // 권한이 필요하면 여기서 설정
-                .build();
+        return new UserDetailsImpl(user);
+
     }
 }

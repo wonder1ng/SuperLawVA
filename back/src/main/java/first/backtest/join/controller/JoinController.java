@@ -5,9 +5,11 @@ import first.backtest.join.dto.UserJoinResponseDTO;
 import first.backtest.join.dto.VerifyRequestDTO;
 import first.backtest.join.service.JoinService;
 import first.backtest.join.service.MailService;
+import first.backtest.login_out.service.UserDetailsImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -72,7 +74,16 @@ public class JoinController {
             return ResponseEntity.status(403).body(e.getMessage());
         }
     }
+
+    // 🔵 회원 탈퇴 API
+    @DeleteMapping("/withdraw")
+    public ResponseEntity<String> deleteUser(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        Long userId = userDetails.getUser().getId(); // 바로 꺼낼 수 있음
+        joinService.deleteUser(userId);
+        return ResponseEntity.ok("회원 탈퇴가 완료되었습니다.");
+    }
 }
+
 
 
 
