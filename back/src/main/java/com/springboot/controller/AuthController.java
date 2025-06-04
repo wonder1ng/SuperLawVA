@@ -1,6 +1,7 @@
 package com.springboot.controller;
 
 import com.springboot.dto.*;
+import com.springboot.entity.User;
 import com.springboot.security.CustomUserDetails;
 import com.springboot.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -67,10 +68,10 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
-    // 🟢 새로 추가: 일반 회원가입 (React 연동 완료)
+    // 🟢 수정: Redis 기반 이메일 인증을 사용한 회원가입
     @Operation(
             summary = "일반 회원가입",
-            description = "사용자명, 이메일, 비밀번호로 회원가입하고 인증 이메일을 발송합니다."
+            description = "사용자명, 이메일, 비밀번호로 회원가입하고 Redis를 통한 인증 이메일을 발송합니다."
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "회원가입 성공"),
@@ -88,8 +89,8 @@ public class AuthController {
         }
 
         try {
-            // 🟢 React가 기대하는 RegisterResponseDTO 반환
-            RegisterResponseDTO response = authService.register(registerRequest);
+            // 🟢 Redis 기반 이메일 인증 회원가입
+            RegisterResponseDTO response = authService.registerWithRedisVerification(registerRequest);
             return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
@@ -125,14 +126,14 @@ public class AuthController {
         }
     }
 
-    // 🟢 새로 추가: 이메일 인증 (React 연동 완료)
+    // 🟢 수정: Redis 기반 이메일 인증 (React 연동)
     @Operation(
             summary = "이메일 인증",
-            description = "이메일과 인증 코드로 이메일 인증을 완료합니다."
+            description = "Redis에 저장된 인증 코드로 이메일 인증을 완료하고 선택적으로 토큰을 발급합니다."
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "인증 성공"),
-            @ApiResponse(responseCode = "400", description = "잘못된 인증 코드 또는 만료"),
+            @ApiResponse(responseCode = "403", description = "잘못된 인증 코드 또는 만료"),
             @ApiResponse(responseCode = "500", description = "서버 오류")
     })
     @PostMapping("/verify-email")
@@ -146,22 +147,33 @@ public class AuthController {
         }
 
         try {
-            // 🟢 React가 기대하는 응답 형식 (토큰 포함)
-            AuthResponseDTO response = authService.verifyEmail(verificationRequest);
-            return ResponseEntity.ok(response);
+            // 🟢 Redis 기반 이메일 인증 처리
+            authService.verifyEmailWithRedis(verificationRequest);
+
+            // 🟢 React가 기대하는 응답: 인증 완료 후 토큰 발급 (선택적)
+            // React에서 즉시 로그인을 원한다면 토큰 발급
+            User user = authService.getCurrentUserByEmail(verificationRequest.getEmail());
+            AuthResponseDTO authResponse = authService.generateAuthResponseForUser(user);
+
+            return ResponseEntity.ok(Map.of(
+                    "message", "이메일 인증 성공!",
+                    "token", authResponse.getToken(),
+                    "refreshToken", authResponse.getRefreshToken(),
+                    "user", authResponse.getUser()
+            ));
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(Map.of("message", e.getMessage()));
+            return ResponseEntity.status(403).body(Map.of("message", e.getMessage()));
         }
     }
 
-    // 🟢 새로 추가: 인증 코드 재발송 (React 연동)
+    // 🟢 새로 추가: 인증 코드 재발송 (Redis 기반)
     @Operation(
             summary = "인증 코드 재발송",
-            description = "이메일 인증 코드를 다시 발송합니다."
+            description = "Redis를 통해 이메일 인증 코드를 다시 발송합니다."
     )
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "재발송 성공"),
-            @ApiResponse(responseCode = "400", description = "잘못된 이메일 또는 이미 인증된 사용자"),
+            @ApiResponse(responseCode = "400", description = "잘못된 이메일"),
             @ApiResponse(responseCode = "500", description = "서버 오류")
     })
     @PostMapping("/resend-verification")
@@ -173,7 +185,7 @@ public class AuthController {
         }
 
         try {
-            boolean result = authService.resendVerificationCode(email);
+            boolean result = authService.resendRedisVerificationCode(email);
             return ResponseEntity.ok(Map.of(
                     "success", result,
                     "message", result ? "인증 코드가 재발송되었습니다." : "인증 코드 재발송에 실패했습니다."
@@ -257,5 +269,47 @@ public class AuthController {
     public ResponseEntity<Map<String, String>> logout() {
         // JWT는 상태를 저장하지 않으므로 클라이언트에서 토큰을 삭제하는 것으로 로그아웃 처리
         return ResponseEntity.ok(Map.of("message", "로그아웃 성공"));
+    }
+
+    // 🟢 새로 추가: 회원 탈퇴
+    @Operation(
+            summary = "회원 탈퇴",
+            description = "현재 로그인한 사용자의 계정을 완전히 삭제합니다."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "탈퇴 성공"),
+            @ApiResponse(responseCode = "401", description = "인증 실패"),
+            @ApiResponse(responseCode = "404", description = "사용자를 찾을 수 없음")
+    })
+    @SecurityRequirement(name = "Bearer Authentication")
+    @DeleteMapping("/withdraw")
+    public ResponseEntity<Map<String, String>> deleteUser(
+            @Parameter(hidden = true) @AuthenticationPrincipal CustomUserDetails userDetails) {
+        try {
+            authService.deleteUser(userDetails.getId());
+            return ResponseEntity.ok(Map.of("message", "회원 탈퇴가 완료되었습니다."));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    // 🟢 새로 추가: ID로 사용자 조회 (관리자 기능)
+    @Operation(
+            summary = "ID로 사용자 조회",
+            description = "사용자 ID로 특정 사용자 정보를 조회합니다."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "조회 성공"),
+            @ApiResponse(responseCode = "404", description = "사용자를 찾을 수 없음")
+    })
+    @SecurityRequirement(name = "Bearer Authentication")
+    @GetMapping("/user/{id}")
+    public ResponseEntity<AuthResponseDTO.UserDTO> getUserById(@PathVariable Long id) {
+        try {
+            AuthResponseDTO.UserDTO userDTO = authService.getCurrentUser(id);
+            return ResponseEntity.ok(userDTO);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

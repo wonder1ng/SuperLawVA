@@ -60,6 +60,9 @@ dependencies {
 
 	// 🟢 이메일 기능 추가
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	// Redis 의존성 추가
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'io.lettuce:lettuce-core'
 }
 
 tasks.named('test') {
