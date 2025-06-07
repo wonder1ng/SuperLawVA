@@ -1,0 +1,11 @@
+# 🔐 개인정보 보호
+.env
+.env.template
+src/main/resources/application-local.yml
+docker-compose.override.yml
+*.backup
+
+# 🏗️ 빌드 파일
+build/
+.gradle/
+*.log

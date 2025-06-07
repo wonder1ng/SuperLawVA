@@ -1,0 +1,33 @@
+# 🐳 기본 Docker 서비스 (개인정보 없음)
+services:
+  # Redis (이메일 인증 코드 저장)
+  redis:
+    image: redis:7-alpine
+    container_name: legal-ai-redis
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - legal-ai-network
+
+  # Redis 관리 도구
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: legal-ai-redis-commander
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "${REDIS_COMMANDER_PORT:-8081}:8081"
+    depends_on:
+      - redis
+    networks:
+      - legal-ai-network
+
+volumes:
+  redis_data:
+
+networks:
+  legal-ai-network:
+    driver: bridge
