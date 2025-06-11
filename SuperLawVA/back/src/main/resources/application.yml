@@ -1,0 +1,54 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/login_demo?serverTimezone=Asia/Seoul&characterEncoding=utf8
+    username: root
+    password: mysql123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: 2272b43ef969f0f8a7afcebbd0a2d3f3
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            authorization-grant-type: authorization_code
+            scope:
+              - profile_nickname
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ori8591y@gmail.com
+    password: lcootxacmgppwdwq
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
+jwt:
+  secret: jwt-secret-key-very-secure-and-long-enough
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
