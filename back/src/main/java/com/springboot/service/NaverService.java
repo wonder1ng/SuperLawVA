@@ -1,6 +1,6 @@
 package com.springboot.service;
 
-import com.springboot.dto.NaverDTO;
+import com.springboot.dto.auth.NaverDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

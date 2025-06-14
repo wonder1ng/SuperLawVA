@@ -1,11 +1,19 @@
 # 🔐 개인정보 보호
 .env
 .env.template
-src/main/resources/application-local.yml
-docker-compose.override.yml
+src/main/resources/application.yml
+docker-compose.yml
 *.backup
 
 # 🏗️ 빌드 파일
 build/
 .gradle/
 *.log
+build/libs
+
+# Google Cloud 서비스 계정 키
+src/main/resources/service-account-key.json
+**/service-account-key.json
+
+*.pdf
+uploads/

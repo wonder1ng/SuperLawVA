@@ -25,6 +25,13 @@ repositories {
 	mavenCentral()
 }
 
+// 🟢 Google Cloud BOM으로 버전 관리
+dependencyManagement {
+	imports {
+		mavenBom 'com.google.cloud:libraries-bom:26.28.0'
+	}
+}
+
 dependencies {
 	// JWT 관련 의존성
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.5'
@@ -63,6 +70,21 @@ dependencies {
 	// Redis 의존성 추가
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'io.lettuce:lettuce-core'
+
+	// 🟢 Google Cloud Document AI 의존성 추가 (BOM으로 버전 관리)
+	implementation 'com.google.cloud:google-cloud-document-ai'
+	implementation 'com.google.cloud:google-cloud-storage'
+	
+	// 🟢 gRPC 관련 의존성 추가 (Document AI 필수)
+	implementation 'io.grpc:grpc-netty-shaded'
+	implementation 'io.grpc:grpc-services'
+	
+	// Protobuf 의존성 추가 (GCP 라이브러리에 필요)
+	implementation 'com.google.protobuf:protobuf-java'
+
+	// 🟢 파일 처리 유틸리티
+	implementation 'commons-io:commons-io:2.15.0'
+	implementation 'org.apache.tika:tika-core:2.9.1'
 }
 
 tasks.named('test') {

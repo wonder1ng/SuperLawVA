@@ -1,6 +1,6 @@
 package com.springboot.controller;
 
-import com.springboot.dto.*;
+import com.springboot.dto.auth.*;
 import com.springboot.entity.User;
 import com.springboot.security.CustomUserDetails;
 import com.springboot.service.AuthService;

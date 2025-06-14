@@ -1,6 +1,6 @@
 package com.springboot.service;
 
-import com.springboot.dto.*;
+import com.springboot.dto.auth.*;
 import com.springboot.entity.User;
 import com.springboot.repository.UserRepository;
 import com.springboot.security.JwtTokenProvider;
@@ -15,8 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;

@@ -1,6 +1,7 @@
 package com.springboot.security;
 
-import lombok.RequiredArgsConstructor;
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,7 +19,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
+import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
@@ -65,6 +66,14 @@ public class SecurityConfig {
                         // 헬스체크 허용
                         .requestMatchers("/actuator/health").permitAll()
 
+                        // 🟢 OCR 관련 API 모두 허용 (디버깅용)
+                        .requestMatchers("/api/documents", "/api/documents/**").permitAll()
+                        .requestMatchers("/api/upload", "/api/upload/**").permitAll()
+                        .requestMatchers("/api/ocr", "/api/ocr/**").permitAll()
+                        
+                        // 🟢 CORS preflight 요청 허용
+                        .requestMatchers("OPTIONS", "/**").permitAll()
+
                         // 🔵 나머지 요청은 인증 필요
                         .anyRequest().authenticated()
                 )
@@ -84,10 +93,12 @@ public class SecurityConfig {
                 "http://localhost:3000",    // React 개발 서버
                 "http://localhost:5173",    // Vite 개발 서버
                 "http://localhost:8080",    // 백엔드 개발 서버 (테스트용)
+                "http://localhost:8081",    // 추가 개발 서버
+                "http://localhost:8082",    // 추가 개발 서버
                 "https://legal-ai.com"      // 운영 도메인
         ));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+        configuration.setAllowedHeaders(Arrays.asList("*")); // 모든 헤더 허용 (디버깅용)
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
 

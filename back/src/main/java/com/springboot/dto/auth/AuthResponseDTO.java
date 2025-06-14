@@ -1,9 +1,6 @@
-package com.springboot.dto;
+package com.springboot.dto.auth;
 
 import com.springboot.entity.User;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
 // 🔵 기존 + 🟢 확장: 통합 인증 응답 DTO

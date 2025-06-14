@@ -1,6 +1,6 @@
 package com.springboot.service;
 
-import com.springboot.dto.KakaoDTO;
+import com.springboot.dto.auth.KakaoDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

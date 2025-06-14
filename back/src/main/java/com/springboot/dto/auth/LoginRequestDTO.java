@@ -1,4 +1,4 @@
-package com.springboot.dto;
+package com.springboot.dto.auth;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
