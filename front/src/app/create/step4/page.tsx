@@ -58,7 +58,7 @@ function ContractCreateNewPage() {
         )}
       </div>
       <div className="flex items-center gap-4 px-4 flex-grow overflow-hidden">
-        <span className="w-[1.6rem] h-[1.6rem] flex justify-center items-center bg-main2 text-white rounded-[50px] text-[1rem] flex-shrink-0">
+        <span className="w-[1.6rem] h-[1.6rem] flex justify-center items-center bg-main text-white rounded-[50px] text-[1rem] flex-shrink-0">
           {index + 1}
         </span>
         <span className="truncate">{value}</span>
@@ -92,7 +92,7 @@ function ContractCreateNewPage() {
       <div className="h-20 w-full flex flex-col justify-center items-center">
         <StatusIcon className="mt-[1.4rem]" />
       </div>
-      <BackHeader to="login">임대차 계약서 작성</BackHeader>
+      <BackHeader to="/">임대차 계약서 작성</BackHeader>
       <main className="flex flex-col items-center mt-[3rem] gap-12 h-[calc(100%-11rem)]">
         <div className="px-8 py-12 w-full flex-1 bg-white rounded-t-[50px] backdrop-opacity-70 flex flex-col gap-12 items-center">
           <div className="w-full flex flex-col gap-4 items-start">

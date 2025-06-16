@@ -1,9 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import SubmitButton from "@/components/submitButton";
+import SubmitButton from "@/components/SubmitButton";
 import StatusIcon from "@/components/icons/Status";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BackHeader from "@/components/BackHeader";
 import StyledInput from "@/components/StyledInput";
 import Modal from "@/components/Modal";
@@ -12,6 +12,14 @@ import ArrowRightIcon from "@/components/icons/ArrowRight";
 
 function ContractCreateNewPage() {
   const router = useRouter();
+
+  useEffect(() => {
+    // 클라이언트 환경에서만 실행됨
+    if (sessionStorage.getItem("start") !== "true") {
+      router.replace("/");
+    }
+  }, [router]);
+
   const [modalOpen, setModalOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [address, setAddress] = useState<string>("");
@@ -354,7 +362,7 @@ function ContractCreateNewPage() {
           >
             다음
           </SubmitButton>
-          <span>skip→</span>
+          <span onClick={() => router.push("step2")}>skip→</span>
         </div>
       </main>
       <Modal
@@ -380,7 +388,7 @@ function ContractCreateNewPage() {
               <span className="text-[2rem] font-bold text-center">
                 {tabTitles[activeIndex]} 입력해주세요.
               </span>
-              <span className="text-main2 text-[1.2rem] font-semibold">
+              <span className="text-main text-[1.2rem] font-semibold">
                 {activeIndex < 5
                   ? "1. 부동산 표시(" + (activeIndex + 1) + "/5)"
                   : "2. 계약 내용(" + (activeIndex - 4) + "/5)"}
@@ -410,7 +418,7 @@ function ContractCreateNewPage() {
                   ? setModalOpen(!modalOpen)
                   : setActiveIndex(activeIndex + 1);
               }}
-              className="text-main2"
+              className="text-main"
             >
               skip→
             </button>

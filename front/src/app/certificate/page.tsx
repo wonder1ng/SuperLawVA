@@ -5,7 +5,7 @@ import DocumentIcon from "@/components/icons/Document";
 import InfoIcon from "@/components/icons/Info";
 import TwoStarIcon from "@/components/icons/TwoStar";
 import Modal from "@/components/Modal";
-import SubmitButton from "@/components/submitButton";
+import SubmitButton from "@/components/SubmitButton";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
@@ -51,16 +51,17 @@ function StartPage() {
           fontSize={1.8}
           className="mt-16 flex items-center justify-center gap-x-2 whitespace-nowarp"
           onClick={() => setModalOpen(true)}
-          icon={<TwoStarIcon width={2.4} height={2.4} color="#FFFFFF"/>}
+          icon={<TwoStarIcon width={2.4} height={2.4} color="#FFFFFF" />}
         >
           생성하기
         </SubmitButton>
-        <div className="text-[1.3rem]">
-          <button className="mt-8 text-[#797979]"
-          onClick={() => router.push("/main")}>다음에 할래요</button>
+        <div
+          onClick={() => router.back()}
+          className="mt-8 text-[#797979] text-[1.4rem] font-medium"
+        >
+          ← 다음에 할래요
         </div>
       </main>
-
 
       <Modal
         isOpen={modalOpen}
@@ -117,16 +118,16 @@ function StartPage() {
             >
               다시 업로드
             </SubmitButton>
-            <SubmitButton 
-              width={16} 
-              height={5} 
-              fontSize={1.6} 
+            <SubmitButton
+              width={16}
+              height={5}
+              fontSize={1.6}
               fontWeight={500}
               onClick={() => {
                 setModalOpen(false);
-                router.push("/main/certificate/starting");
+                router.push("certificate/starting");
               }}
-              >
+            >
               네, 맞아요
             </SubmitButton>
           </div>

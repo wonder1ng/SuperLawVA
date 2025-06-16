@@ -33,7 +33,7 @@ function ContractCreateNewPage() {
       <div className="h-20 w-full flex flex-col justify-center items-center">
         <StatusIcon className="mt-[1.4rem]" />
       </div>
-      <BackHeader to="login">임대차 계약서 작성</BackHeader>
+      <BackHeader>임대차 계약서 작성</BackHeader>
       <main className="flex flex-col items-center mt-[3rem] gap-12 h-[calc(100%-11rem)]">
         <div>
           <div className="flex justify-center items-center">
@@ -80,7 +80,7 @@ function ContractCreateNewPage() {
                       className="w-full h-20 px-12 flex justify-between items-center text-[1.4rem] text-[#3a3a40] font-medium border border-[#d7d7d7] rounded-[50px] bg-white"
                     >
                       <div className="flex gap-4">
-                        <span className="w-[1.6rem] h-[1.6rem] flex justify-center items-center bg-main2 text-white rounded-[50px] text-[1rem]">
+                        <span className="w-[1.6rem] h-[1.6rem] flex justify-center items-center bg-main text-white rounded-[50px] text-[1rem]">
                           {index + 1}
                         </span>
                         {value}
@@ -128,6 +128,7 @@ function ContractCreateNewPage() {
               disabled={valueArray.length === 0}
               className="flex justify-center items-center mb-12 mt-auto"
               icon={<MagicStar2Icon />}
+              onClick={() => router.push("step4")}
             >
               생성하기
             </SubmitButton>
@@ -149,7 +150,7 @@ function ContractCreateNewPage() {
                     className="w-[calc(100%-5rem)] h-20 px-12 flex justify-between items-center text-[1.4rem] text-[#3a3a40] font-medium border border-[#d7d7d7] rounded-[50px] bg-white"
                   >
                     <div className="flex gap-4">
-                      <span className="w-[1.6rem] h-[1.6rem] flex justify-center items-center bg-main2 text-white rounded-[50px] text-[1rem]">
+                      <span className="w-[1.6rem] h-[1.6rem] flex justify-center items-center bg-main text-white rounded-[50px] text-[1rem]">
                         {index + 1}
                       </span>
                       {value}
@@ -172,7 +173,7 @@ function ContractCreateNewPage() {
             <span className="text-[2rem] font-bold text-center">
               당신의 요구사항을 입력하세요
             </span>
-            <span className="text-main2 text-[1.2rem] font-semibold">
+            <span className="text-main text-[1.2rem] font-semibold">
               특약 추가하기
             </span>
           </div>
@@ -192,7 +193,7 @@ function ContractCreateNewPage() {
             className={`flex items-center justify-center gap-4 text-[1.4rem] font-medium${
               valueArray.length === 0
                 ? " text-[rgba(128,128,128,0.55)] cursor-not-allowed pointer-events-none"
-                : " text-main2"
+                : " text-main"
             }`}
             onClick={() => setModalOpen(false)}
           >

@@ -257,7 +257,7 @@ function StartPage() {
       <div className="h-20 w-full flex flex-col justify-center items-center">
         <StatusIcon className="mt-[1.4rem]" />
       </div>
-      <BackHeader to="login">월세 임대차 계약서</BackHeader>
+      <BackHeader to="/">월세 임대차 계약서</BackHeader>
       <main className="flex flex-col items-center mt-[3rem] gap-12 mx-10 h-auto">
         <ul className="flex justify-around items-center w-full h-16 font-medium text-subText text-[1.2rem] bg-white border border-[#cdcdcd] rounded-[50px]">
           {tabs.map((tab, index) => (
@@ -265,7 +265,7 @@ function StartPage() {
               key={index}
               onClick={() => setActiveIndex(index)}
               className={`flex-1 flex h-full items-center justify-center rounded-[50px]${
-                activeIndex === index ? " bg-main2 text-white" : ""
+                activeIndex === index ? " bg-main text-white" : ""
               }`}
             >
               {tab}

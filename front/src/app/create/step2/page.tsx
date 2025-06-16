@@ -22,7 +22,7 @@ function ContractCreateNewPage() {
       <div className="h-20 w-full flex flex-col justify-center items-center">
         <StatusIcon className="mt-[1.4rem]" />
       </div>
-      <BackHeader to="login">임대차 계약서 작성</BackHeader>
+      <BackHeader>임대차 계약서 작성</BackHeader>
       <main className="flex flex-col items-center mt-[3rem] gap-12 h-auto">
         <StyledDiv
           width="calc(100% - 2.5rem)"
@@ -57,10 +57,10 @@ function ContractCreateNewPage() {
               제2조 (존속기간)
               <div className="font-normal">
                 임대인은 위 부동산을 임대차 목적대로 사용 수익할 수 있는 상태로
-                하여 <span className="text-main2">2025년 10월 31일</span>까지
+                하여 <span className="text-main">2025년 10월 31일</span>까지
                 임차인에게 인도하며, 임대차기간은 인도일로부터&nbsp;
-                <span className="text-main2">24</span>
-                개월인 <span className="text-main2">2027년 10월 31일</span>
+                <span className="text-main">24</span>
+                개월인 <span className="text-main">2027년 10월 31일</span>
                 까지로 한다.
               </div>
             </div>
@@ -122,7 +122,7 @@ function ContractCreateNewPage() {
               <div className="font-normal">
                 개업공인중개사는 중개대상물 확인.설명서를 작성하고
                 업무보증관계증서(공제증서 등) 사본을 첨부하여{" "}
-                <span className="text-main2">2025년 04월 20일</span>
+                <span className="text-main">2025년 04월 20일</span>
                 거래당사자 쌍방에게 교부한다.
               </div>
             </div>
@@ -130,7 +130,7 @@ function ContractCreateNewPage() {
         </div>
         <span
           className={`flex self-center justify-self-center gap-4${
-            disable ? " text-[rgba(128,128,128,0.55)]" : " text-main2"
+            disable ? " text-[rgba(128,128,128,0.55)]" : " text-main"
           }`}
           onClick={() => setDisable(!disable)}
         >
@@ -146,6 +146,7 @@ function ContractCreateNewPage() {
           fontWeight={500}
           disabled={disable}
           className="mb-12"
+          onClick={() => router.push("step3")}
         >
           다음
         </SubmitButton>

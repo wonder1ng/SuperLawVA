@@ -12,7 +12,6 @@ import { useState } from "react";
 function StartPage() {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
-
   const [selected, setSelected] = useState<number | null>(null);
   const handleSelect = (index: number) => {
     setSelected((prev) => (prev === index ? null : index));
@@ -40,7 +39,7 @@ function StartPage() {
           도와드릴게요!
         </div>
         <img
-          src="/createPage.png"
+          src="/createStart.png"
           alt="Main Icon"
           className="w-[26.5rem] h-[26.5rem] mt-16"
         />
@@ -58,13 +57,11 @@ function StartPage() {
         >
           시작하기
         </SubmitButton>
-        <div className="text-[1.3rem]">
-          <button
-            className="mt-8 text-[#797979]"
-            onClick={() => router.push("/main")}
-          >
-            다음에 할래요
-          </button>
+        <div
+          onClick={() => router.back()}
+          className="mt-8 text-[#797979] text-[1.4rem] font-medium"
+        >
+          ← 다음에 할래요
         </div>
       </main>
       <Modal
@@ -78,18 +75,17 @@ function StartPage() {
           </div>
           <ul className="flex flex-col gap-6 px-4 text-[1.8rem] font-medium">
             {["전세", "반전세, 월세"].map((option, index) => {
-              const isActive = selected === index;
-              const color = isActive ? "#6000ff" : "#4e4e4e";
-
               return (
                 <li
                   key={index}
-                  onClick={() => handleSelect(index)}
-                  className={`flex gap-4 items-center justify-between cursor-pointer transition-colors`}
-                  style={{ color }}
+                  onClick={() => {
+                    sessionStorage.setItem("start", "true");
+                    router.push(`create/step1/?rent=${Boolean(index)}`);
+                  }}
+                  className="flex gap-4 items-center justify-between text-[#4e4e4e]"
                 >
                   <span>{option}</span>
-                  <CheckedIcon color={isActive ? "#6000ff" : "#c4c4c5"} />
+                  <CheckedIcon width={1.4} height={1.4} color="#c4c4c5" />
                 </li>
               );
             })}
