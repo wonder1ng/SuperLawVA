@@ -1,97 +1,97 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.4.5'
-	id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
+    id 'org.springframework.boot' version '3.4.5'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.springboot'  // 수정됨
 version = '0.0.1-SNAPSHOT'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
-	sourceCompatibility = '17'
-	targetCompatibility = '17'
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 // 🟢 Google Cloud BOM으로 버전 관리
 dependencyManagement {
-	imports {
-		mavenBom 'com.google.cloud:libraries-bom:26.28.0'
-	}
+    imports {
+        mavenBom 'com.google.cloud:libraries-bom:26.28.0'
+    }
 }
 
 dependencies {
-	// JWT 관련 의존성
-	implementation 'io.jsonwebtoken:jjwt-api:0.12.5'
-	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.5'
-	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.5'
+    // JWT 관련 의존성
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.5'
 
-	// Spring Boot Starters
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    // Spring Boot Starters
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
-	// MySQL 데이터베이스 (H2 대신)
-	runtimeOnly 'com.mysql:mysql-connector-j'
+    // MySQL 데이터베이스 (H2 대신)
+    runtimeOnly 'com.mysql:mysql-connector-j'
 
-	// Swagger/OpenAPI 3.0
-	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+    // Swagger/OpenAPI 3.0
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
 
-	// 개발 도구
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
+    // 개발 도구
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 
-	// 개발/테스트용 H2 (선택적)
-	runtimeOnly 'com.h2database:h2'
+    // 개발/테스트용 H2 (선택적)
+    runtimeOnly 'com.h2database:h2'
 
-	// 테스트
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'io.projectreactor:reactor-test'
-	testImplementation 'org.springframework.security:spring-security-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    // 테스트
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-	// 🟢 이메일 기능 추가
-	implementation 'org.springframework.boot:spring-boot-starter-mail'
-	// Redis 의존성 추가
-	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-	implementation 'io.lettuce:lettuce-core'
+    // 🟢 이메일 기능 추가
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    // Redis 의존성 추가
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'io.lettuce:lettuce-core'
 
-	// 🟢 Google Cloud Document AI 의존성 추가 (BOM으로 버전 관리)
-	implementation 'com.google.cloud:google-cloud-document-ai'
-	implementation 'com.google.cloud:google-cloud-storage'
-	
-	// 🟢 gRPC 관련 의존성 추가 (Document AI 필수)
-	implementation 'io.grpc:grpc-netty-shaded'
-	implementation 'io.grpc:grpc-services'
-	
-	// Protobuf 의존성 추가 (GCP 라이브러리에 필요)
-	implementation 'com.google.protobuf:protobuf-java'
+    // 🟢 Google Cloud Document AI 의존성 추가 (BOM으로 버전 관리)
+    implementation 'com.google.cloud:google-cloud-document-ai'
+    implementation 'com.google.cloud:google-cloud-storage'
 
-	// 🟢 파일 처리 유틸리티
-	implementation 'commons-io:commons-io:2.15.0'
-	implementation 'org.apache.tika:tika-core:2.9.1'
+    // 🟢 gRPC 관련 의존성 추가 (Document AI 필수)
+    implementation 'io.grpc:grpc-netty-shaded'
+    implementation 'io.grpc:grpc-services'
+
+    // Protobuf 의존성 추가 (GCP 라이브러리에 필요)
+    implementation 'com.google.protobuf:protobuf-java'
+
+    // 🟢 파일 처리 유틸리티
+    implementation 'commons-io:commons-io:2.15.0'
+    implementation 'org.apache.tika:tika-core:2.9.1'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
 
 // Spring Boot 메인 클래스 명시
 springBoot {
-	mainClass = 'com.springboot.Ex30OAuth2RestApiApplication'
+    mainClass = 'com.springboot.Ex30OAuth2RestApiApplication'
 }
