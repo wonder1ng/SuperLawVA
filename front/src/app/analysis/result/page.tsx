@@ -653,7 +653,7 @@ function AnalysisResultPage() {
       <div className="h-20 w-full flex flex-col justify-center items-center">
         <StatusIcon className="mt-[1.4rem]" />
       </div>
-      <BackHeader to="login">월세 임대차 계약서</BackHeader>
+      <BackHeader to="/">월세 임대차 계약서</BackHeader>
       <main className="flex flex-col items-center mt-[3rem] gap-12 h-auto">
         <div className="w-full my-12 flex flex-col gap-4 justify-center items-center">
           <div className="mx-16 px-8 py-6 gap-12 flex justify-center items-center bg-white rounded-[20px]">

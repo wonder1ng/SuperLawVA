@@ -13,46 +13,23 @@ import AppleIcon from "@/components/icons/sns/Apple";
 import BackHeader from "@/components/BackHeader";
 import SubmitButton from "@/components/SubmitButton";
 
-// 큰 제목 - 그라데이션 텍스트
-const GradientTitle = styled.span`
-  font-weight: 700;
-  font-size: 3rem;
-  line-height: 120%;
-
-  background: linear-gradient(180deg, #5046e5 50%, #9134eb 143.75%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-`;
-
-const SubText = styled.p`
-  font-weight: 500;
-  font-size: 1.6rem;
-  line-height: 120%;
-  color: #0f0f0f;
-`;
-
 function LoginPage() {
   const router = useRouter();
   const [emailValue, setemailValue] = useState("");
 
-  const handleClick = () => {
-    router.push("/login");
-  };
   return (
     <>
       <div className="h-20 w-full flex flex-col justify-center items-center">
         <StatusIcon className="mt-[1.4rem]" />
       </div>
       <main className="flex flex-col items-center mt-[3rem] gap-12 mx-10 h-auto">
-        <div className="mt-20 gap-4 flex flex-col justify-center items-center">
+        <div className="mt-20 w-full gap-4 flex flex-col justify-center items-center">
           <img src="/logo.svg" alt="logo" className="h-16" />
           <span className="h-20 font-semibold text-[4rem] tracking-[-0.04em] bg-gradient-to-r from-[#6000FF] to-[#E100FF] bg-clip-text text-transparent">
             Super LawVA
           </span>
         </div>
-        <div className="mt-12 flex flex-col gap-8">
+        <div className="mt-12 w-full flex flex-col gap-8">
           <div className="flex flex-col gap-4 text-[1.8rem]">
             <span className="font-medium">이메일 주소</span>
             <StyledInput
@@ -104,9 +81,12 @@ function LoginPage() {
               </label>
             </div>
           </div>
-          <div className="mt-8 flex justify-center" onClick={handleClick}>
-            <SubmitButton>로그인</SubmitButton>
-          </div>
+          <SubmitButton
+            onClick={() => router.push("/")}
+            className="mt-8 flex justify-center items-center"
+          >
+            로그인
+          </SubmitButton>
           <div className="flex justify-center gap-4 text-l font-medium">
             <span>아이디 찾기</span>|<span>비밀번호 찾기</span>|
             <span>회원가입</span>

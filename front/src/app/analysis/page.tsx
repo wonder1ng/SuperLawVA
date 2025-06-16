@@ -62,9 +62,9 @@ function AnalysisPage() {
         </SubmitButton>
         <div
           onClick={() => router.back()}
-          className="mt-12 text-[#797979] text-[1.2rem] font-medium"
+          className="mt-8 text-[#797979] text-[1.4rem] font-medium"
         >
-          &lt;- 다음에 할래요
+          ← 다음에 할래요
         </div>
       </main>
       <Modal
@@ -110,7 +110,12 @@ function AnalysisPage() {
             >
               다시 업로드
             </SubmitButton>
-            <SubmitButton height={5} fontSize={1.6} fontWeight={500}>
+            <SubmitButton
+              height={5}
+              fontSize={1.6}
+              fontWeight={500}
+              onClick={() => router.push("analysis/result")}
+            >
               네, 맞아요
             </SubmitButton>
           </div>
