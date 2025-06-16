@@ -37,12 +37,6 @@ export default function SubmitButton({
     ? "#5046E5"
     : fontColor || "#ffffff";
 
-  // const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
-  //   if (onClick) {
-  //     onClick(e); // 외부 핸들러 실행
-  //   }
-  // };
-
   return (
     <button
       className={className}
