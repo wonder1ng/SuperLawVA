@@ -29,8 +29,8 @@ const ChatIcon = ({
             y2="15.3333"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#6000FF" />
-            <stop offset="1" stop-color="#E100FF" />
+            <stop stopColor="#6000FF" />
+            <stop offset="1" stopColor="#E100FF" />
           </linearGradient>
         </defs>
       </>
