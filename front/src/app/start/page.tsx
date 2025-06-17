@@ -1,46 +1,93 @@
-// page.tsx
 "use client";
 
+import SubmitButton from "@/components/SubmitButton";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
-export default function StartPage() {
+function StartPage() {
   const router = useRouter();
 
+  const [showFirst, setShowFirst] = useState(true);
+  const [showSecond, setShowSecond] = useState(false);
   const handleClick = () => {
     router.push("/login");
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowFirst(false);
+    }, 300); // 3초 뒤에 첫 main 사라짐
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSecond(true);
+    }, 1200); // 3초 뒤에 첫 main 사라짐
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="w-full relative bg-white h-[852px] overflow-hidden text-left text-[40px] text-black font-pretendard">
-      <div className="absolute top-[calc(50%-52px)] left-[calc(50%-111.5px)] tracking-[-0.04em] leading-[120%] font-semibold">
-        Super Lawva
-      </div>
-      
-      <div 
-        className="absolute top-[722px] left-[36px] rounded-[30px] bg-[#6000ff] w-[320px] h-[50px] cursor-pointer flex items-center justify-center"
-        onClick={handleClick}
-      >
-        <div className="text-[18px] leading-[120%] font-medium text-white whitespace-nowrap">
-          시작하기
-        </div>
-      </div>
+    <>
+      <AnimatePresence>
+        {showFirst && (
+          <motion.main
+            key="first"
+            className="w-full mt-72 h-[45%] flex flex-col justify-center items-center"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5 }} // 사라지는 데 3초
+          >
+            <div className="absolute top-0 w-full h-[45%] mt-72 flex flex-col items-center gap-4">
+              <span className="font-semibold text-[4rem] tracking-[-0.04em] bg-gradient-to-r from-[#6000FF] to-[#E100FF] bg-clip-text text-transparent">
+                Super LawVA
+              </span>
+              <span className="font-medium text-[1.4rem] tracking-[-0.04em]">
+                Law Virtual Assistant
+              </span>
+            </div>
+          </motion.main>
+        )}
+      </AnimatePresence>
 
-      <div className="absolute top-[437px] left-[calc(50%-132.5px)] text-[17px] leading-[120%] text-center">
-        <p className="m-0">임대차 계약, 분쟁 대신 분석을.</p>
-        <p className="m-0">쉬운 계약서 분석과 Ai 기반 명확한 분석.</p>
-      </div>
-
-      <div className="absolute top-[314px] left-[163px]">
-        <Image
-          src="/lovalogo.svg"
-          alt="Super Lawva Logo"
-          width={66}
-          height={33}
-          className="object-cover"
-          priority
-        />
-      </div>
-    </div>
+      {showSecond && (
+        <AnimatePresence>
+          <motion.main
+            key="second"
+            className="absolute top-0 w-full mt-72 h-[calc(100%-36rem)] flex flex-col justify-center items-center gap-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 2 }} // 나타나는 데 3초
+          >
+            <span className="min-w-28 max-h-24 mx-72 mt-52">
+              <img src="/logo.svg" className="w-full h-full my-px" alt="" />
+            </span>
+            <div className="w-full flex flex-col items-center justify-center">
+              <span className="font-semibold text-[4rem] tracking-[-0.04em]">
+                Super LawVA
+              </span>
+              <span className="text-[1.7rem] leading-8 text-center">
+                임대차 계약, 분쟁 대신 분석을.
+                <br />
+                AI 기반의 쉽고 명확한 계약서 분석
+              </span>
+            </div>
+            <div
+              className="w-full px-14 mt-96 flex self-end"
+              onClick={handleClick}
+            >
+              <SubmitButton>시작하기</SubmitButton>
+            </div>
+          </motion.main>
+        </AnimatePresence>
+      )}
+    </>
   );
 }
+
+export default StartPage;

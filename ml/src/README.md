@@ -1,0 +1,5 @@
+- /services/vectordb에 판례, 법령 db 저장됨.
+- /routes : api 라우터 정의
+- /services : 메인 기능 들 (특약생성, 검토기능, 내용증명생성) 
+- /services/schema : 각 기능 별 api의 포맷 정의
+- 

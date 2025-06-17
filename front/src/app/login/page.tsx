@@ -2,118 +2,115 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import styled from "styled-components";
-
+import StatusIcon from "@/components/icons/Status";
+import KakaoIcon from "@/components/icons/sns/Kakao";
 import StyledInput from "@/components/StyledInput";
 import { useState } from "react";
-import KakaoIcon from "@/components/icons/sns/Kakao";
 import GoogleIcon from "@/components/icons/sns/Google";
 import NaverIcon from "@/components/icons/sns/Naver";
 import AppleIcon from "@/components/icons/sns/Apple";
-import PasswordVisibilityIcon from "@/components/icons/PasswordVisibility";
+import BackHeader from "@/components/BackHeader";
+import SubmitButton from "@/components/SubmitButton";
 
-// 큰 제목 - 그라데이션 텍스트
-const GradientTitle = styled.span`
-  font-weight: 700;
-  font-size: 3rem;
-  line-height: 120%;
-
-  background: linear-gradient(180deg, #5046e5 50%, #9134eb 143.75%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-`;
-
-export default function LoginPage() {
+function LoginPage() {
   const router = useRouter();
   const [emailValue, setemailValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
 
   return (
-    <div className="w-full relative bg-white h-[852px] overflow-hidden text-center text-[14px] text-[#86868b] font-pretendard">
-      <div className="absolute top-[calc(50%-250.86px)] left-[calc(50%-111.5px)] text-[40px] tracking-[-0.04em] leading-[120%] font-semibold text-black text-left">
-        Super Lawva
+    <>
+      <div className="h-20 w-full flex flex-col justify-center items-center">
+        <StatusIcon className="mt-[1.4rem]" />
       </div>
-
-      <div className="absolute top-[125px] left-[163px]">
-        <Image
-          src="/lovalogo.svg"
-          alt="Super Lawva Logo"
-          width={66}
-          height={33}
-          className="object-cover"
-          priority
-        />
-      </div>
-
-      <div className="absolute top-[277px] left-[calc(50%-160.5px)] text-[17px] leading-[17px] font-medium text-black">
-        이메일을 입력해주세요.
-      </div>
-
-      <div className="absolute top-[304px] left-[calc(50%-160.5px)] w-[321px]">
-        <StyledInput
-          type="email"
-          placeholder="super@lvw.com"
-          onChange={(e) => setemailValue(e.target.value)}
-        />
-      </div>
-
-      <div className="absolute top-[351px] left-[calc(50%-160.5px)] text-[17px] leading-[17px] font-medium text-black">
-        비밀번호를 입력해주세요.
-      </div>
-
-      <div className="absolute top-[379px] left-[calc(50%-160.5px)] w-[321px] relative">
-        <StyledInput
-          type={showPassword ? "text" : "password"}
-          placeholder="대소문자, 숫자, 특수문자 포함하여 8글자 이상"
-          onChange={(e) => setPasswordValue(e.target.value)}
-        />
-        <div className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer" onClick={togglePasswordVisibility}>
-          <PasswordVisibilityIcon width={16} height={16} isVisible={showPassword} />
+      <main className="flex flex-col items-center mt-[3rem] gap-12 mx-10 h-auto">
+        <div className="mt-20 w-full gap-4 flex flex-col justify-center items-center">
+          <img src="/logo.svg" alt="logo" className="h-16" />
+          <span className="h-20 font-semibold text-[4rem] tracking-[-0.04em] bg-gradient-to-r from-[#6000FF] to-[#E100FF] bg-clip-text text-transparent">
+            Super LawVA
+          </span>
         </div>
-      </div>
+        <div className="mt-12 w-full flex flex-col gap-8">
+          <div className="flex flex-col gap-4 text-[1.8rem]">
+            <span className="font-medium">이메일 주소</span>
+            <StyledInput
+              type="email"
+              placeholder="super@lvw.com"
+              onChange={(e) => setemailValue(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col gap-4 text-[1.8rem]">
+            <span className="font-medium">비밀번호</span>
+            <StyledInput
+              type="password"
+              placeholder="대소문자, 숫자, 특수문자 포함하여 8글자 이상"
+              onChange={(e) => setemailValue(e.target.value)}
+            />
+          </div>
+          <div className="flex items-center gap-10">
+            <div className="flex gap-4">
+              <input type="checkbox" name="" id="" className="w-6 h-6" />
+              <label htmlFor="" className="text-[1.2rem]">
+                아이디 저장
+              </label>
+            </div>
+            {/* checkbox 커스텀 코드 */}
+            {/* <div className="grid items-center justify-center">
+              <input
+                type="checkbox"
+                className="peer col-start-1 row-start-1 w-8 h-8 appearance-none rounded border-2 border-gray-300 checked:border-main checked:bg-main dark:border-gray-600 dark:checked:border-main forced-colors:appearance-auto"
+              />
+              <svg
+                viewBox="0 0 14 14"
+                fill="none"
+                className="invisible col-start-1 row-start-1 stroke-black peer-checked:visible dark:text-violet-300 forced-colors:hidden pointer-events-none"
+              >
+                <path
+                  d="M3 8L6 11L11 3.5"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  stroke="#ffffff"
+                ></path>
+              </svg>
+            </div> */}
 
-      <div className="absolute top-[439px] left-[calc(50%-160px)] rounded-[30px] bg-[#eaeaea] w-[320px] h-[50px] cursor-pointer">
-        <div className="absolute top-[15px] left-[calc(50%-23.5px)] text-[18px] leading-[120%] font-medium text-white">
-          로그인
+            <div className="flex gap-4">
+              <input type="checkbox" name="" id="" className="w-6 h-6" />
+              <label htmlFor="" className="text-[1.2rem]">
+                자동 로그인
+              </label>
+            </div>
+          </div>
+          <SubmitButton
+            onClick={() => router.push("/")}
+            className="mt-8 flex justify-center items-center"
+          >
+            로그인
+          </SubmitButton>
+          <div className="flex justify-center gap-4 text-l font-medium">
+            <span>아이디 찾기</span>|<span>비밀번호 찾기</span>|
+            <span>회원가입</span>
+          </div>
         </div>
-      </div>
-
-      <div className="absolute top-[503px] left-[calc(50%-89.5px)] text-[14px] tracking-[-0.5px] leading-[14px] text-[#0a84ff] underline"
-       onClick={() => router.push("/register")}>
-        회원가입
-      </div>
-      <div className="absolute top-[503px] left-[calc(50%+41.5px)] text-[14px] tracking-[-0.5px] leading-[14px] text-[rgba(0,0,0,0.7)]">
-        비밀번호 찾기
-      </div>
-
-      <div className="absolute top-[562px] left-[19px] w-[354px] h-[94px] font-noto-sans">
-        <div className="absolute top-0 left-[114px] tracking-[-0.5px] leading-[29px] inline-block w-[124px] h-[24px]">
-          SNS 계정으로 로그인
+        <div className="w-full flex flex-col justify-center items-center gap-8">
+          <div className="mt-16 w-full flex justify-between items-center gap-4 text-xl">
+            {/* <hr className="flex-1 border-[#797979]" />
+            <span className="flex-1 text-center">SNS 계정으로 로그인</span>
+            <hr className="flex-1 border-[#797979]" /> */}
+            <hr className="w-full border-[#797979]" />
+            <span className="min-w-44 text-center">SNS 계정으로 로그인</span>
+            <hr className="w-full border-[#797979]" />
+          </div>
+          <div className="flex flex-row gap-12">
+            <KakaoIcon />
+            <GoogleIcon />
+            <NaverIcon />
+            <AppleIcon />
+          </div>
         </div>
-        <div className="absolute top-[15.5px] left-[-0.5px] bg-[#86868b] border-t border-[#86868b] w-[110px] h-[1px]" />
-        <div className="absolute top-[15.5px] left-[244.5px] bg-[#86868b] border-t border-[#86868b] w-[110px] h-[1px]" />
-        
-        <div className="absolute top-[44px] left-[25px]">
-          <KakaoIcon />
-        </div>
-        <div className="absolute top-[44px] left-[109px]">
-          <GoogleIcon />
-        </div>
-        <div className="absolute top-[44px] left-[193px]">
-          <NaverIcon />
-        </div>
-        <div className="absolute top-[44px] left-[277px]">
-          <AppleIcon />
-        </div>
-      </div>
-    </div>
+      </main>
+    </>
   );
 }
+
+export default LoginPage;

@@ -1,10 +1,9 @@
 import IconOptions from "@/app/types/IconOptions";
 
 const CheckedIcon = ({
-  width = 1.4,
-  height = 1.4,
+  width = 2,
+  height = 2,
   color = "#6000ff",
-  className,
 }: IconOptions) => (
   <svg
     width={typeof width == "number" ? width + "rem" : width}

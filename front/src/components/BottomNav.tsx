@@ -1,60 +1,76 @@
-'use client';
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import HomeIcon from "./icons/Home";
+import ChatIcon from "./icons/Chat";
+import UserIcon from "./icons/User";
+import EllipsisIcon from "./icons/Ellipsis";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+interface NavBtnProps {
+  to: string;
+  icon: React.ElementType;
+  label: string;
+}
 
-export default function BottomNav() {
+interface BottomNavProps {
+  mainBackGroundColor?: string;
+}
+
+const NavBtn: React.FC<NavBtnProps> = ({ to, icon: Icon, label }) => {
   const pathname = usePathname();
+  const isActive = pathname === to;
+
+  const gradientStyle = {
+    background:
+      "linear-gradient(135deg, rgba(96, 0, 255, 0.7) 23.33%, rgba(225, 0, 255, 0.7) 76.67%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text",
+    color: "transparent",
+  };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 h-[52px] flex justify-center items-center">
-      <div className="relative w-[393px] h-[52px]">
-        <div className="absolute top-0 left-0 w-full h-full backdrop-blur-[4px] rounded-[41px] bg-white/20" />
-        <div className="absolute top-[6px] left-[46px] w-[301px] h-[40px] flex justify-between items-center">
-          {/* 홈 */}
-          <Link href="/main" className="relative w-[16px] h-[40px]">
-            <Image
-              src="/home.svg"
-              alt="Home"
-              width={16}
-              height={18}
-              className="absolute top-0 left-0"
-            />
-            <div className={`absolute top-[30px] left-[4px] text-[10px] font-semibold leading-[10px] ${pathname === '/' ? 'bg-gradient-to-r from-[#6000ff]/70 to-[#e100ff]/70 bg-clip-text text-transparent' : 'text-[#9ca3af]'}`}>
-              홈
-            </div>
-          </Link>
+    <Link href={to} className="flex flex-col items-center gap-1">
+      <Icon
+        width="2.4rem"
+        height="2.4rem"
+        color={isActive ? "active" : "#9CA3AF"}
+      />
+      <span
+        className="text-[1.2rem]"
+        style={isActive ? gradientStyle : { color: "#9CA3AF" }}
+      >
+        {label}
+      </span>
+    </Link>
+  );
+};
 
-          {/* 채팅 */}
-          <Link href="/chat" className="relative w-[19px] h-[40px]">
-            <Image
-              src="/chat.svg"
-              alt="Chat"
-              width={19}
-              height={18}
-              className="absolute top-0 left-[calc(50%-9.5px)]"
-            />
-            <div className={`absolute top-[30px] left-0 text-[10px] font-semibold leading-[10px] ${pathname === '/chat' ? 'bg-gradient-to-r from-[#6000ff]/70 to-[#e100ff]/70 bg-clip-text text-transparent' : 'text-[#9ca3af]'}`}>
-              채팅
-            </div>
-          </Link>
+const BottomNav: React.FC<BottomNavProps> = ({ mainBackGroundColor }) => {
+  const [isClient, setIsClient] = useState(false);
 
-          {/* 더보기 */}
-          <Link href="/more" className="relative w-[26px] h-[40px]">
-            <Image
-              src="/more.svg"
-              alt="More"
-              width={16}
-              height={2}
-              className="absolute top-0 left-[19.23%]"
-            />
-            <div className={`absolute top-[30px] left-0 text-[10px] font-semibold leading-[10px] whitespace-nowrap ${pathname === '/more' ? 'bg-gradient-to-r from-[#6000ff]/70 to-[#e100ff]/70 bg-clip-text text-transparent' : 'text-[#9ca3af]'}`}>
-              더보기
-            </div>
-          </Link>
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
+
+  return (
+    <nav
+      className="sticky bottom-0 w-full h-28"
+      style={{
+        backgroundColor: mainBackGroundColor || "white",
+      }}
+    >
+      <div className="h-full border-t border-[#c6c6c8] bg-white pt-4 z-10 rounded-t-[50px]">
+        <div className="flex justify-around items-center h-full">
+          <NavBtn to="/" icon={HomeIcon} label="홈" />
+          <NavBtn to="/register" icon={ChatIcon} label="채팅" />
+          <NavBtn to="/more" icon={EllipsisIcon} label="더보기" />
         </div>
       </div>
-    </div>
+    </nav>
   );
-}
+};
+
+export default BottomNav;

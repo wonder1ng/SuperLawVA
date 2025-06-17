@@ -3,7 +3,7 @@
 import { StyledInputProps } from "@/app/types/CustomStyledProps";
 
 export default function StyledInput({
-  width = "32rem",
+  width = "full",
   fontWeight = 400,
   fontSize = "1.4rem",
   type = "text",

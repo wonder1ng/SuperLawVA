@@ -1,1 +1,75 @@
+# =====================
+# Python 관련
+# =====================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+*.db
+*.sqlite3
+*.egg-info/
+*.log
+
+# =====================
+# 가상환경
+# =====================
+venv/
+env/
+.flaskenv
+.env
+.env.*
+
+# =====================
+# VSCode / PyCharm 설정
+# =====================
+.vscode/
+.idea/
+
+# =====================
+# 테스트 / 린트 / 빌드
+# =====================
+htmlcov/
+.tox/
+.cache/
+coverage.*
+.mypy_cache/
+.pytest_cache/
+*.cover
+
+# =====================
+# 노트북 / 문서
+# =====================
+*.ipynb
+.ipynb_checkpoints/
+
+# =====================
+# LangChain + Chroma + DB
+# =====================
+# ChromaDB 디렉토리
+vectordb/
+chroma_*/  
+*.chroma.db
+index_store/
+*.faiss
+*.pkl
+law_output/
+# =====================
+# OS / 시스템 파일
+# =====================
+.DS_Store
+Thumbs.db
+
+# =====================
+# 빌드 결과물
+# =====================
+dist/
+build/
+*.egg
+*.whl
+
+# =====================
+# 기타
+# =====================
+logs/
 .DS_Store

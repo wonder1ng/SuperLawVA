@@ -1,5 +1,3 @@
-import { IconOptions } from "@/app/types/IconOptions";
-
 interface PasswordVisibilityIconProps {
   width?: number;
   height?: number;
@@ -8,12 +6,12 @@ interface PasswordVisibilityIconProps {
   isVisible?: boolean;
 }
 
-export default function PasswordVisibilityIcon({ 
-  width = 16, 
-  height = 16, 
+export default function PasswordVisibilityIcon({
+  width = 16,
+  height = 16,
   color = "#86868B",
   className = "",
-  isVisible = false
+  isVisible = false,
 }: PasswordVisibilityIconProps) {
   return (
     <svg
@@ -37,4 +35,4 @@ export default function PasswordVisibilityIcon({
       )}
     </svg>
   );
-} 
+}

@@ -4,7 +4,6 @@ const CameraIcon = ({
   width = 2,
   height = 2,
   color = "#6000ff",
-  className,
 }: IconOptions) => (
   <svg
     width={typeof width == "number" ? width + "rem" : width}

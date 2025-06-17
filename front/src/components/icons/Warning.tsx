@@ -1,11 +1,11 @@
 import IconOptions from "@/app/types/IconOptions";
 
 const WarningIcon = ({
-  width = 1.4,
-  height = 1.4,
-  color = "#FFE32E",
-  className,
-}: IconOptions) => (
+  width = 2,
+  height = 2,
+  color = "#6000FF",
+}: // color = "#FFE32E",
+IconOptions) => (
   <svg
     width={typeof width == "number" ? width + "rem" : width}
     height={typeof height == "number" ? height + "rem" : height}

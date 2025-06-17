@@ -1,9 +1,10 @@
 import IconOptions from "@/app/types/IconOptions";
 
 const CrossIcon = ({
-  width = 1.2,
-  height = 1.2,
-  color = "#5E5E5E",
+  width = 2,
+  height = 2,
+  color = "#6000FF",
+  // color = "#5E5E5E",
   className,
 }: IconOptions) => (
   <svg

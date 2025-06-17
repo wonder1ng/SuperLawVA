@@ -1,8 +1,8 @@
 import IconOptions from "@/app/types/IconOptions";
 
 const PaymentIcon = ({
-  width = 1.4,
-  height = 1.4,
+  width = 2,
+  height = 2,
   color = "#6000FF",
   className,
 }: IconOptions) => (
@@ -12,7 +12,7 @@ const PaymentIcon = ({
     width={typeof width == "number" ? width + "rem" : width}
     height={typeof height == "number" ? height + "rem" : height}
     color={color}
-    fill={"none"}
+    fill="none"
   >
     <g clipPath="url(#clip0_961_9093)">
       <path

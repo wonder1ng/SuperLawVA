@@ -1,0 +1,9 @@
+.env
+
+# 벡터DB는 커밋 대상에서 제외
+vectordb/chroma_case/
+vectordb/chroma_law/
+
+
+
+__pycache__

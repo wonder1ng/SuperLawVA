@@ -1,0 +1,40 @@
+# ✅ FastAPI 서버용
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+
+# ✅ LangChain 모듈 - 최신 구조 반영
+langchain==0.1.16                   # core langchain
+langchain-openai==0.0.5             # OpenAI 연동 (ChatOpenAI, OpenAIEmbeddings)
+langchain-community==0.0.21         # ChatOpenAI, PromptTemplate 등 community 모듈
+langchain-core==0.1.48              # Prompt, OutputParser 등 core 기능
+langchain-chroma==0.1.1             # Chroma vectorstore 연동
+
+# ✅ ChromaDB - 벡터스토어
+chromadb==0.5.0
+
+# ✅ OpenAI API 클라이언트
+openai==1.3.7
+
+# ✅ 환경변수 관리 (.env)
+python-dotenv==1.0.1
+
+# ✅ 데이터 처리
+tqdm
+pydantic==1.10.13                   # FastAPI에서 Pydantic v2 사용 시 오류 방지
+
+# ✅ 비동기 요청 등 유틸
+httpx==0.27.2
+
+
+# requirements.txt
+pandas
+
+huggingface_hub
+
+jsonpath-ng
+
+sentence_transformers
+
+langchain_chroma
+
+langchain-anthropic
