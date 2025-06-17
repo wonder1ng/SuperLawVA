@@ -1,36 +1,48 @@
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.p12
+    key-store-password: mysql123!
+    key-store-type: PKCS12
+    key-alias: myalias
+
 spring:
+  profiles:          # ✅ 프로필은 spring 블록 안, 맨 위
+    active: local
+
   datasource:
     url: jdbc:mysql://localhost:3306/email_service?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-
-    redis:
-      host: localhost
-      port: 6379
+  redis:
+    host: localhost
+    port: 6379
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
     properties:
-      hibernate:
-        format_sql: true
+      hibernate.format_sql: true        # 한 줄 축약 가능
 
   mail:
     host: smtp.gmail.com
     port: 587
     username: ori8591y@gmail.com
-    password: lcootxacmgppwdwq  # 발급받은 앱 비밀번호 (띄어쓰기 없이!)
+    password: lcootxacmgppwdwq
     properties:
       mail.smtp.auth: true
       mail.smtp.starttls.enable: true
 
 jwt:
   secret: mySecretKey123456789012345678901234567890
-  # expiration: 86400000  # 토큰 만료시간 (밀리초, 24시간)
 
 logging:
   level:
     org.hibernate.SQL: debug
+
+file:
+  upload-dir: /Users/ljy/Documents/uploads   # ✅ file 키는 루트

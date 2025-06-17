@@ -1,6 +1,7 @@
 package first.backtest.config;
 
 import first.backtest.jwt.JwtAuthenticationFilter;
+import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,12 +15,19 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import java.security.Security;
 
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    @PostConstruct
+    public void setup() {
+        Security.addProvider(new BouncyCastleProvider());
+    }
 
     // ✅ CORS 설정 추가
     @Bean

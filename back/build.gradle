@@ -44,6 +44,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mail'//메일인증용
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.apache.commons:commons-pool2' // Redis 커넥션 풀
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.78.1' //ARIA 라이브러리
 }
 
 tasks.named('test') {
