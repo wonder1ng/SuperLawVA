@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import ProgressRing from "@/components/ProgressRing";
 import SubmitButton from "@/components/SubmitButton";
 import Image from "next/image";
-import TwoStarIcon from "@/components/icons/TwoStar";
+import MagicTwoStarIcon from "@/components/icons/MagicTwoStar";
 
 function LoadingPage() {
   const router = useRouter();
@@ -62,7 +62,7 @@ function LoadingPage() {
             height={5.5}
             fontSize={1.7}
             onClick={goNext}
-            icon={<TwoStarIcon width={2.4} height={2.4} color="#FFFFFF" />}
+            icon={<MagicTwoStarIcon width={2.4} height={2.4} color="#FFFFFF" />}
           >
             보러가기
           </SubmitButton>

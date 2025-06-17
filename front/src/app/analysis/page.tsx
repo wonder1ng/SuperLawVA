@@ -3,7 +3,7 @@
 
 import CheckedIcon from "@/components/icons/Checked";
 import DocumentIcon from "@/components/icons/Document";
-import MagicStar2Icon from "@/components/icons/MagicStar2";
+import MagicTwoStarIcon from "@/components/icons/MagicTwoStar";
 import Modal from "@/components/Modal";
 import StyledDiv from "@/components/StyledDiv";
 import SubmitButton from "@/components/SubmitButton";
@@ -32,7 +32,7 @@ function AnalysisPage() {
           fontWeight={700}
           borderColor="none"
           className="px-10 flex justify-center items-center "
-          icon={<MagicStar2Icon width={1.4} height={1.4} color="#0A84FF" />}
+          icon={<MagicTwoStarIcon width={1.4} height={1.4} color="#0A84FF" />}
         >
           AI로 계약서 분석하기
         </StyledDiv>

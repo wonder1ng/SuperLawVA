@@ -1,19 +1,14 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import SubmitButton from "@/components/SubmitButton";
 import StatusIcon from "@/components/icons/Status";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BackHeader from "@/components/BackHeader";
-import StyledInput from "@/components/StyledInput";
-import Modal from "@/components/Modal";
 import ArrowLeftIcon from "@/components/icons/ArrowLeft";
 import ArrowRightIcon from "@/components/icons/ArrowRight";
 import StyledDiv from "@/components/StyledDiv";
 import WarningIcon from "@/components/icons/Warning";
-import CheckedIcon from "@/components/icons/Checked";
-import MagicStar2Icon from "@/components/icons/MagicStar2";
-import CrossIcon from "@/components/icons/Cross";
+import MagicTwoStarIcon from "@/components/icons/MagicTwoStar";
 import MagnifyingGlassIcon from "@/components/icons/MagnifyingGlass";
 import BulbIcon from "@/components/icons/Bulb";
 import ExclamationIcon from "@/components/icons/Exclamation";
@@ -112,7 +107,7 @@ function ContractCreateNewPage() {
           </div>
           <div className="w-full flex flex-col gap-4 items-start">
             <span className="px-8 flex gap-4 items-center text-[1.8rem] text-[#0f0f0f] font-semibold">
-              <MagicStar2Icon width={1.6} height={1.6} color="#6000FF" />
+              <MagicTwoStarIcon width={1.6} height={1.6} color="#6000FF" />
               생성된 특약
             </span>
             <DivBox className="flex items-center px-10 py-6">

@@ -3,7 +3,7 @@
 
 import DocumentIcon from "@/components/icons/Document";
 import InfoIcon from "@/components/icons/Info";
-import TwoStarIcon from "@/components/icons/TwoStar";
+import MagicTwoStarIcon from "@/components/icons/MagicTwoStar";
 import Modal from "@/components/Modal";
 import SubmitButton from "@/components/SubmitButton";
 import { useRouter } from "next/navigation";
@@ -51,7 +51,7 @@ function StartPage() {
           fontSize={1.8}
           className="mt-16 flex items-center justify-center gap-x-2 whitespace-nowarp"
           onClick={() => setModalOpen(true)}
-          icon={<TwoStarIcon width={2.4} height={2.4} color="#FFFFFF" />}
+          icon={<MagicTwoStarIcon width={2.4} height={2.4} color="#FFFFFF" />}
         >
           생성하기
         </SubmitButton>

@@ -7,7 +7,7 @@ import { useState } from "react";
 import Modal from "@/components/Modal";
 import BackHeader from "@/components/BackHeader";
 import AnalyzeIcon from "@/components/icons/Analysis";
-import TwoStarIcon from "@/components/icons/TwoStar";
+import MagicTwoStarIcon from "@/components/icons/MagicTwoStar";
 import InfoIcon from "@/components/icons/Info";
 import { useRouter } from "next/navigation";
 
@@ -124,7 +124,9 @@ function StartPage() {
                 }`}
                 disabled={!canSubmit}
                 onClick={handleClick}
-                icon={<TwoStarIcon width={2.4} height={2.4} color="#FFFFFF" />}
+                icon={
+                  <MagicTwoStarIcon width={2.4} height={2.4} color="#FFFFFF" />
+                }
               >
                 생성하기
               </SubmitButton>

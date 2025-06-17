@@ -4,7 +4,7 @@
 import CameraIcon from "@/components/icons/Camera";
 import CheckedIcon from "@/components/icons/Checked";
 import DocumentIcon from "@/components/icons/Document";
-import MagicStarIcon from "@/components/icons/MagicStar";
+import MagicThreeStarIcon from "@/components/icons/MagicThreeStar";
 import PictureIcon from "@/components/icons/Picture";
 import Modal from "@/components/Modal";
 import StyledDiv from "@/components/StyledDiv";
@@ -30,7 +30,7 @@ function StartPage() {
           background="#faf5ff"
           fontSize={1.2}
           fontWeight={700}
-          icon={<MagicStarIcon />}
+          icon={<MagicThreeStarIcon />}
         >
           <span className="text-good">AI로 계약서 관리하기</span>
         </StyledDiv>

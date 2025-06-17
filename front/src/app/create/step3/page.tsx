@@ -12,7 +12,7 @@ import ArrowRightIcon from "@/components/icons/ArrowRight";
 import StyledDiv from "@/components/StyledDiv";
 import WarningIcon from "@/components/icons/Warning";
 import CheckedIcon from "@/components/icons/Checked";
-import MagicStar2Icon from "@/components/icons/MagicStar2";
+import MagicTwoStarIcon from "@/components/icons/MagicTwoStar";
 import CrossIcon from "@/components/icons/Cross";
 
 function ContractCreateNewPage() {
@@ -127,7 +127,7 @@ function ContractCreateNewPage() {
               fontWeight={500}
               disabled={valueArray.length === 0}
               className="flex justify-center items-center mb-12 mt-auto"
-              icon={<MagicStar2Icon />}
+              icon={<MagicTwoStarIcon />}
               onClick={() => router.push("step4")}
             >
               생성하기
