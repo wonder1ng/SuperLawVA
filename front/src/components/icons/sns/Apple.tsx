@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import type { MouseEventHandler } from "react";
-import IconOptions, { LinkIconProps } from "@/app/types/IconOptions";
+import { LinkIconProps } from "@/app/types/IconOptions";
 
 const AppleIcon = ({
   width = 5,

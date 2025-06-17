@@ -1,8 +1,8 @@
 import IconOptions from "@/app/types/IconOptions";
 
 const PencilIcon = ({
-  width = 1.6,
-  height = 1.6,
+  width = 2,
+  height = 2,
   color = "#6000FF",
   className,
 }: IconOptions) => (

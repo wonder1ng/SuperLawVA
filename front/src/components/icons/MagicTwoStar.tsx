@@ -1,9 +1,9 @@
 import IconOptions from "@/app/types/IconOptions";
 
-const MagicStar2Icon = ({
+const MagicTwoStarIcon = ({
   width = 2,
   height = 2,
-  color = "white",
+  color = "#6000FF",
   className,
 }: IconOptions) => (
   <svg
@@ -12,7 +12,7 @@ const MagicStar2Icon = ({
     width={typeof width == "number" ? width + "rem" : width}
     height={typeof height == "number" ? height + "rem" : height}
     color={color}
-    fill={"none"}
+    fill="none"
   >
     <path
       d="M9.51208 13.4707L8.7118 15.3046C8.40416 16.0096 7.42916 16.0096 7.12153 15.3046L6.32123 13.4707C5.60903 11.8386 4.32711 10.5395 2.72808 9.82935L0.525263 8.85102C-0.175088 8.53999 -0.175087 7.52061 0.525263 7.20958L2.65928 6.26181C4.29943 5.53338 5.60435 4.18611 6.30438 2.49837L7.11505 0.543964C7.41587 -0.18132 8.41744 -0.181322 8.71828 0.543962L9.52895 2.49839C10.229 4.18611 11.5339 5.53338 13.174 6.26181L15.3081 7.20958C16.0084 7.52061 16.0084 8.53999 15.3081 8.85102L13.1052 9.82935C11.5062 10.5395 10.2243 11.8386 9.51208 13.4707Z"
@@ -25,4 +25,4 @@ const MagicStar2Icon = ({
   </svg>
 );
 
-export default MagicStar2Icon;
+export default MagicTwoStarIcon;

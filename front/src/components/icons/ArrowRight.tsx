@@ -2,12 +2,13 @@
 
 import { useRouter } from "next/navigation";
 import type { MouseEventHandler } from "react";
-import IconOptions, { LinkIconProps } from "@/app/types/IconOptions";
+import { LinkIconProps } from "@/app/types/IconOptions";
 
 const ArrowRightIcon = ({
-  width = 1.5,
-  height = 1.5,
+  width = 2,
+  height = 1,
   color = "#000000",
+  opacity = 1,
   className,
   to,
   onClick,
@@ -31,8 +32,8 @@ const ArrowRightIcon = ({
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 10 15"
-      width={typeof width == "number" ? width + "rem" : width}
+      viewBox="0 0 11 20"
+      width={typeof width == "number" ? width + 0.1 + "rem" : width}
       height={typeof height == "number" ? height + "rem" : height}
       color={color}
       fill="none"
@@ -42,8 +43,9 @@ const ArrowRightIcon = ({
       style={{ cursor: "pointer" }}
     >
       <path
-        d="M1 12.5018L8.5 6.75092L1 1"
+        d="M1 1L10 10L1 19"
         stroke={color}
+        strokeOpacity={opacity}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"

@@ -2,12 +2,13 @@
 
 import { useRouter } from "next/navigation";
 import type { MouseEventHandler } from "react";
-import IconOptions, { LinkIconProps } from "@/app/types/IconOptions";
+import { LinkIconProps } from "@/app/types/IconOptions";
 
 const ArrowDownIcon = ({
-  width = 1.5,
-  height = 1.5,
+  width = 2,
+  height = 1,
   color = "#000000",
+  opacity = 1,
   className,
   to,
   onClick,
@@ -31,9 +32,9 @@ const ArrowDownIcon = ({
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 15 10"
+      viewBox="0 0 20 11"
       width={typeof width == "number" ? width + "rem" : width}
-      height={typeof height == "number" ? height + "rem" : height}
+      height={typeof height == "number" ? height + 0.1 + "rem" : height}
       color={color}
       fill="none"
       className={className}
@@ -42,9 +43,9 @@ const ArrowDownIcon = ({
       style={{ cursor: "pointer" }}
     >
       <path
-        d="M13 1L7 7L1 1"
+        d="M19 1L10 10L1 1"
         stroke={color}
-        strokeOpacity="0.6"
+        strokeOpacity={opacity}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -52,5 +53,4 @@ const ArrowDownIcon = ({
     </svg>
   );
 };
-
 export default ArrowDownIcon;

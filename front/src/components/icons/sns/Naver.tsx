@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import type { MouseEventHandler } from "react";
-import IconOptions, { LinkIconProps } from "@/app/types/IconOptions";
+import { LinkIconProps } from "@/app/types/IconOptions";
 
 const NaverIcon = ({
   width = 5,

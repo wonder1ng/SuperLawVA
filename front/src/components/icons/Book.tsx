@@ -4,7 +4,6 @@ const BookIcon = ({
   width = 2,
   height = 2,
   color = "#6000FF",
-  className,
 }: IconOptions) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

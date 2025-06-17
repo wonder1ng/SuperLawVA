@@ -1,10 +1,9 @@
 import IconOptions from "@/app/types/IconOptions";
 
 const QuestionMarkIcon = ({
-  width = 1.6,
-  height = 1.6,
+  width = 2,
+  height = 2,
   color = "#6000FF",
-  className,
 }: IconOptions) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

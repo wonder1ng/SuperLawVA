@@ -3,7 +3,7 @@ import { LinkIconProps } from "@/app/types/IconOptions";
 const AnalysisIcon = ({
   width = 2,
   height = 2,
-  color = "white",
+  color = "#6000FF",
   onClick,
   className,
 }: LinkIconProps) => (

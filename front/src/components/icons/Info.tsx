@@ -5,7 +5,6 @@ const InfoIcon = ({
   height = 2,
   color = "#6000FF",
   onClick,
-  className,
 }: LinkIconProps) => (
   <svg
     width={typeof width == "number" ? width + "rem" : width}

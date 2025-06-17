@@ -4,6 +4,8 @@ export default interface IconOptions {
   width?: number | string;
   height?: number | string;
   color?: string;
+  fill?: string;
+  opacity?: number | string;
   className?: string;
 }
 

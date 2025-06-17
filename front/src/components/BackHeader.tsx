@@ -1,4 +1,4 @@
-import IconOptions, { LinkIconProps } from "@/app/types/IconOptions";
+import { LinkIconProps } from "@/app/types/IconOptions";
 import ArrowLeftIcon from "./icons/ArrowLeft";
 
 interface BackLinkProps extends LinkIconProps {
