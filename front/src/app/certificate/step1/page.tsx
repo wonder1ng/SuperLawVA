@@ -25,7 +25,7 @@ function StartPage() {
 
   const handleClick = () => {
     if (!canSubmit) return;
-    router.push("loading");
+    router.push("step2");
   };
 
   return (

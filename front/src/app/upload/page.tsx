@@ -166,6 +166,7 @@ function StartPage() {
                 fontColor="#1e1e1e"
                 background="white"
                 borderColor="#5c5c5c"
+                onClick={() => router.push("/")}
               >
                 홈 화면으로
               </SubmitButton>

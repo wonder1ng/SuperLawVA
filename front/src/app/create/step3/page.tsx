@@ -113,7 +113,7 @@ function ContractCreateNewPage() {
                 </span>
               </SubmitButton>
               {valueArray.length === 0 ? (
-                <span className="text-[10px] font-normal bg-gradient-to-br from-[rgba(96,0,255,0.7)] to-[rgba(225,0,255,0.7)] bg-clip-text text-transparent">
+                <span className="text-[1rem] font-normal bg-gradient-to-br from-[rgba(96,0,255,0.7)] to-[rgba(225,0,255,0.7)] bg-clip-text text-transparent">
                   위 버튼을 눌러 요구사항을 입력해 보세요!
                 </span>
               ) : (
@@ -147,7 +147,7 @@ function ContractCreateNewPage() {
               ? valueArray.map((value, index) => (
                   <li
                     key={index}
-                    className="w-[calc(100%-5rem)] h-20 px-12 flex justify-between items-center text-[1.4rem] text-[#3a3a40] font-medium border border-[#d7d7d7] rounded-[50px] bg-white"
+                    className="w-[calc(100%-5rem)] h-20 px-12 flex justify-between items-center text-[1.5rem] text-[#3a3a40] font-medium border border-[#d7d7d7] rounded-[50px] bg-white"
                   >
                     <div className="flex gap-4">
                       <span className="w-[1.6rem] h-[1.6rem] flex justify-center items-center bg-main text-white rounded-[50px] text-[1rem]">

@@ -113,7 +113,7 @@ function StartPage() {
               borderColor="#5c5c5c"
               onClick={() => {
                 setModalOpen(false);
-                router.push("/main/certificate");
+                router.push("/certificate");
               }}
             >
               다시 업로드
@@ -125,7 +125,7 @@ function StartPage() {
               fontWeight={500}
               onClick={() => {
                 setModalOpen(false);
-                router.push("certificate/starting");
+                router.push("certificate/step1");
               }}
             >
               네, 맞아요

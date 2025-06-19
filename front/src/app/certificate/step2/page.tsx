@@ -18,7 +18,7 @@ function LoadingPage() {
     return () => clearInterval(id);
   }, []);
 
-  const goNext = () => router.push("result");
+  const goNext = () => router.push("step3");
 
   return (
     <main className="min-h-screen flex flex-col items-center px-6 text-center">

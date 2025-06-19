@@ -13,8 +13,13 @@ function StartPage() {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
   const [selected, setSelected] = useState<number | null>(null);
-  const handleSelect = (index: number) => {
-    setSelected((prev) => (prev === index ? null : index));
+
+  const navigateNext = (index: number) => {
+    setSelected(index);
+    setTimeout(() => {
+      sessionStorage.setItem("start", "true");
+      router.push(`create/step1/?rent=${Boolean(index)}`);
+    }, 240);        
   };
 
   return (
@@ -75,17 +80,17 @@ function StartPage() {
           </div>
           <ul className="flex flex-col gap-6 px-4 text-[1.8rem] font-medium">
             {["전세", "반전세, 월세"].map((option, index) => {
+              const active = selected === index;                
+              const tick   = active ? "#6000FF" : "#c4c4c5";         
+
               return (
                 <li
                   key={index}
-                  onClick={() => {
-                    sessionStorage.setItem("start", "true");
-                    router.push(`create/step1/?rent=${Boolean(index)}`);
-                  }}
-                  className="flex gap-4 items-center justify-between text-[#4e4e4e]"
+                  onClick={() => navigateNext(index)}
+                  className="flex items-center justify-between cursor-pointer transition-colors"
                 >
                   <span>{option}</span>
-                  <CheckedIcon width={1.4} height={1.4} color="#c4c4c5" />
+                  <CheckedIcon width={1.4} height={1.4} color={tick} />
                 </li>
               );
             })}
